@@ -5,8 +5,9 @@ _Regles absolues_ : voir `AGENT.adoc`
 _Ontologie spatiale_ : voir `configuration/.agents/AGENT_GOVERNANCE.adoc`
 _DAG_ : N3 — Orchestration (Regle 4bis)
 
-_Derniere mise a jour_ : 2026-05-05
-_Session en cours_ : 0 — bootstrap gouvernance agent
+_Derniere mise a jour_ : 2026-05-07
+_Session terminee_ : 1 — git init + repo GitHub cheroliv/engine + push
+_Session en cours_ : 2 — ENG-1 aggregateGraphs / ENG-2 verifyDagAcyclic
 
 '''
 == REGLES ABSOLUES (resume)
@@ -22,6 +23,7 @@ _Session en cours_ : 0 — bootstrap gouvernance agent
 
 |===
 | # | Date | Type | Sujet | Score
+| 1 | 2026-05-07 | infra | git init + repo GitHub cheroliv/engine + push | 10/10
 | 0 | 2026-05-05 | init | Bootstrap gouvernance agent engine | —
 |===
 
@@ -30,7 +32,8 @@ _Session en cours_ : 0 — bootstrap gouvernance agent
 
 |===
 | EPIC | Description | Statut | Priorite
-| ENG-0 | Bootstrap gouvernance agent engine | EN COURS | P0
+| ENG-0 | Bootstrap gouvernance agent engine | TERMINE | P0
+| ENG-100 | git init + repo GitHub cheroliv/engine + push | TERMINE (session 1) | P0
 | ENG-1 | `aggregateGraphs` — agregation globale graph.json | A FAIRE | P0
 | ENG-2 | `verifyDagAcyclic` — verification DAG inter-plugins | A FAIRE | P0
 | ENG-3 | `provisionWorkspace` — provisionnement workspace client | A FAIRE | P1
@@ -45,12 +48,13 @@ _Session en cours_ : 0 — bootstrap gouvernance agent
 |===
 | Fichier | Etat
 | `AGENT.adoc` | ✅ Cree (bootstrap 2026-05-05)
-| `.agents/INDEX.adoc` | ✅ Cree (bootstrap 2026-05-05)
-| `.agents/PROMPT_REPRISE.adoc` | ✅ Cree (bootstrap 2026-05-05)
+| `.agents/INDEX.adoc` | ✅ A jour (session 1)
+| `.agents/PROMPT_REPRISE.adoc` | ✅ A jour (session 1→2)
 | `.agents/SESSION_PROCEDURE.adoc` | ✅ Cree (bootstrap 2026-05-05)
-| `.gitignore` | ✅ Cree (bootstrap 2026-05-05)
+| `.gitignore` | ✅ Cree
 | `build.gradle.kts` | ✅ Squelette (TODO: includeBuild + tasks)
 | `settings.gradle.kts` | ✅ Minimal (rootProject.name = "engine")
+| `repo GitHub` | ✅ https://github.com/cheroliv/engine (private)
 |===
 
 '''
