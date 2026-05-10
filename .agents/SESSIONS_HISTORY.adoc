@@ -4,6 +4,12 @@
 |===
 | Session | Date | Type | EPIC(s) | Score
 
+| 004
+| 2026-05-11
+| feature
+| B1 StdoutFormatter [CTX]/[PLAN]/[RESULT] dans codebase-gradle/rag
+| 10/10 — object StdoutFormatter, Tag value class, ctx/plan/result/log, compile OK
+
 | 003
 | 2026-05-10
 | feature

@@ -1,5 +1,16 @@
 = Taches Terminees Archive — Mai 2026 — Engine
 
+== Session 004 — 2026-05-11
+
+|===
+| EPIC | Tache | Statut
+
+| B1
+| `StdoutFormatter` — contrat [CTX]/[PLAN]/[RESULT] dans codebase-gradle/rag
+| ✅ `StdoutFormatter.kt` — object singleton, Tag value class, ctx/plan/result/log, compile OK
+|===
+
+'''
 == Session 003 — 2026-05-10
 
 |===

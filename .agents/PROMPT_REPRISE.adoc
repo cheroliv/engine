@@ -1,15 +1,16 @@
-= PROMPT_REPRISE — Session 004 — Engine
+= PROMPT_REPRISE — Session 005 — Engine
 :toc:
 
 == Contexte de Reprise
 
-**Sessions 0→3 ont realise** :
+*Sessions 0→4 ont realise* :
 - Session 0 : Bootstrap gouvernance agent engine
 - Session 1 : git init + repo GitHub cheroliv/engine
 - Session 2 : ENG-1 aggregateGraphs (21k nodes) + ENG-2 verifyDagAcyclic (22 projets, PASS)
 - Session 3 : ENG-3 provisionWorkspace (provision.sh 14 repos) + ENG-4 CLI (engine.sh wrapper, 5 tasks)
+- Session 4 : B1 StdoutFormatter — contrat [CTX]/[PLAN]/[RESULT] dans codebase-gradle/rag, compilation OK
 
-== Prochaine etape — Session 004
+== Prochaine etape — Session 005
 
 P0 — ENG-5 : Interface API — endpoint SaaS Edster
 P0 — ENG-6 : Chatbot CI/CD conversationnel
@@ -23,6 +24,16 @@ Sous-taches ENG-6 :
 . Script `chatbot.sh` qui lit `graph.json` + `AUGMENTED_CONTEXT_PIPELINE.adoc`
 . Prompt system engine : "Tu es l'orchestrateur N3. Explique les dependances."
 . Boucle REPL locale (readline)
+
+== Actif de la session 004
+
+*StdoutFormatter* cree dans `codebase-gradle/src/main/kotlin/codebase/rag/StdoutFormatter.kt` :
+- `object StdoutFormatter` — singleton
+- `Tag` value class — `[CTX]`, `[PLAN]`, `[RESULT]`
+- `ctx()`, `plan()`, `result()` — raccourcis typés
+- `log(ctx, plan, result)` — affiche les 3 sections
+- `banner(title)`, `separator()` — helpers visuels
+- Pret a etre appele depuis `augmentOpencode` (US-9.12)
 
 == Etat Actuel build.gradle.kts
 
@@ -45,6 +56,7 @@ CLI: engine.sh (info/verify/graph/provision/tasks/usage)
 * Engine N3 — personne ne l'importe, il importe tout le monde
 * Pas de publishToMavenLocal pour engine
 * Pas de commit sans "commit" explicite
+* StdoutFormatter vit dans codebase-gradle (N1), pas dans engine
 
 [.text-right]
-*Session 2026-05-10 — generee par la procedure de fin de session 003.*
+*Session 2026-05-11 — generee par la procedure de fin de session 004.*

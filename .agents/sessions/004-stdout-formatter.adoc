@@ -1,0 +1,44 @@
+= Session 004 — StdoutFormatter (B1 — New Jersey pivot)
+:date: 2026-05-11
+:type: feature
+:epics: B1 (StdoutFormatter), correction AGENTS.adoc
+:score: 10/10
+
+== Objectif
+
+Créer `StdoutFormatter` — contrat `[CTX]/[PLAN]/[RESULT]`, classe Kotlin pure, zéro dépendance,
+intégrée dans `codebase-gradle` (N1) au sein du package `codebase.rag` qui porte le pipeline
+`augmentOpencode` US-9.12.
+
+== Réalisations
+
+. *Correction AGENTS.adoc racine* — `engine-plugin` → `engine` (le projet n'a jamais été `engine-plugin`,
+  engine est un build script N3, pas un plugin).
+. *Analyse du placement* — `StdoutFormatter` ne pouvait pas aller dans `engine/` (règle AGENT.adoc :
+  pas de `src/main/kotlin`). Le package `codebase.rag` dans `codebase-gradle` est le réceptacle naturel
+  puisque porteur du pipeline `augmentOpencode` (walk→index→query→format).
+. *Implémentation* — `StdoutFormatter.kt` dans `codebase-gradle/src/main/kotlin/codebase/rag/` :
+  * `object StdoutFormatter` (singleton, pattern cohérent avec `ChunkTokenizer`)
+  * `Tag` — value class inline `[CTX]`, `[PLAN]`, `[RESULT]`
+  * `section(tag, content)` — affiche `[TAG] content` sur stdout
+  * `ctx()`, `plan()`, `result()` — raccourcis typés
+  * `log(ctx, plan, result)` — affiche les 3 sections d'un coup
+  * `banner(title)` — titre encadré
+  * `separator()` — ligne de séparation
+. *Vérification* — `./gradlew compileKotlin` BUILD SUCCESSFUL (codebase-gradle)
+
+== Fichiers modifiés/créés
+
+|===
+| Fichier | Action
+| `/home/cheroliv/workspace/AGENTS.adoc` | Correction engine-plugin → engine
+| `codebase-gradle/src/main/kotlin/codebase/rag/StdoutFormatter.kt` | Créé
+|===
+
+== Dette
+
+Aucune. La classe est pure Kotlin, zéro dépendance externe.
+
+== Prochaine session
+
+Retour sur ENG-5 / ENG-6 (engine) ou avancement EPIC 9 codebase-gradle (US-9.10 CompositeContextBuilder).
