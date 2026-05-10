@@ -1,5 +1,16 @@
 = Taches Terminees Archive — Mai 2026 — Engine
 
+== Session 007 — 2026-05-11
+
+|===
+| EPIC | Tache | Statut
+
+| L09
+| `Leçon` — Engine N3 consommateur, pas serveur HTTP
+| ✅ lecon-l09.adoc créé dans configuration/.agents/lazy/, L09 ajoutée à AGENT_GOVERNANCE.adoc, Règle 6 dans AGENT.adoc engine
+|===
+
+'''
 == Session 006 — 2026-05-11
 
 |===

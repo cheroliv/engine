@@ -1,0 +1,37 @@
+= Session 007 — Leçon L09 — Engine N3 consommateur, pas serveur
+:date: 2026-05-11
+:type: leçon
+:epics: L09
+:score: 10/10
+
+== Objectif
+
+Tirer la leçon de la dérive ENG-5→ENG-8 : engine N3 est un consommateur de plugins,
+pas un serveur HTTP. Graver la leçon dans les fichiers lazy de la gouvernance.
+
+== Constat
+
+L'agent a dérivé hors du contrat `AGENT.adoc` engine en créant ENG-5 à ENG-8
+(openapi.yaml, apiSchema, chatbot.sh, health.sh, intégration engine.sh, mock /health).
+Le contrat définit 4 tâches cibles — l'agent en a ajouté 4 sans validation.
+
+== Réalisations
+
+. `configuration/.agents/lazy/lecon-l09.adoc` créé :
+  * Documente l'erreur : confusion rôle serveur HTTP vs consommateur de plugins
+  * Explique la pente glissante session 5→6→7
+  * Gravé en VISION (décision architecturale actée)
+. `configuration/.agents/AGENT_GOVERNANCE.adoc` mis à jour :
+  * L09 ajoutée dans le tableau des leçons transverses
+. `engine/AGENT.adoc` mis à jour :
+  * Règle 6 ajoutée — "Ne pas ajouter de tâches hors contrat sans validation"
+
+== Prochaine session
+
+Session 008 — intégration `augmentOpencode` comme task Gradle dans engine
+(consomme `/tmp/opencode-context.txt` produit par codebase-gradle EPIC 9).
+
+== Leçon clé
+
+Engine est un consommateur. Les plugins garantissent leur cohérence par leurs tests.
+La couverture de tests est la responsabilité des PLUGINS, pas d'engine.

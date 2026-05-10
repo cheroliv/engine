@@ -4,6 +4,12 @@
 |===
 | Session | Date | Type | EPIC(s) | Score
 
+| 007
+| 2026-05-11
+| leçon
+| L09 — Engine N3 consommateur, pas serveur HTTP
+| 10/10 — lecon-l09.adoc, Regle 6 dans AGENT.adoc, L09 dans AGENT_GOVERNANCE.adoc
+
 | 006
 | 2026-05-11
 | feature

@@ -1,52 +1,59 @@
-= PROMPT_REPRISE — Session 007 — Engine
+= PROMPT_REPRISE — Session 008 — Engine
 :toc:
 
 == Contexte de Reprise
 
-*Sessions 0→6 ont realise* :
+*Sessions 0→7 ont realise* :
 - 0 : Bootstrap gouvernance
 - 1 : git init + repo GitHub
 - 2 : ENG-1 aggregateGraphs + ENG-2 verifyDagAcyclic
 - 3 : ENG-3 provisionWorkspace + ENG-4 CLI
 - 4 : B1 StdoutFormatter [CTX]/[PLAN]/[RESULT] dans codebase-gradle/rag
-- 5 : ENG-5 openapi.yaml + apiSchema + ENG-6 chatbot.sh
-- 6 : ENG-7 Integration engine.sh (api/chatbot/health) + ENG-8 health.sh
+- 5 : ENG-5 openapi.yaml + apiSchema (contrat Edster) + ENG-6 chatbot.sh (REPL Ollama)
+- 6 : ENG-7 Integration engine.sh + ENG-8 health.sh (mock /health JSON)
+- 7 : Lecon L09 — Engine N3 consommateur, pas serveur HTTP (gravee dans gouvernance)
 
-== Prochaine etape — Session 007
+== Prochaine etape — Session 008
 
-Option A — Pivot codebase-gradle : US-9.10 CompositeContextBuilder
-Option B — ENG-9 : Vrai serveur HTTP pour /health (Ktor ou http4k minimal)
-Option C — ENG-10 : Provisionnement SaaS via API (POST /provision)
+P0 — Derniere tache cible du contrat AGENT.adoc engine :
+`augmentOpencode` — pipeline complet walk→index→query→format → `/tmp/opencode-context.txt`
 
-== Actif des sessions 5-6
+Depend de codebase-gradle EPIC 9 (US-9.10 CompositeContextBuilder, US-9.11 OpencodeInjector).
+Engine doit :
+. Creer la task Gradle `augmentOpencode` qui appelle le plugin `codebase-gradle`
+. L'exposer via `engine.sh` (`./engine augment`)
+. Valider que `/tmp/opencode-context.txt` est bien genere
 
-* `openapi.yaml` — contrat (3 paths, 6 schemas)
+Si EPIC 9 n'est pas encore pret, engine peut definir la task comme placeholder
+(noop ou echo "EPIC 9 codebase-gradle requis") avec un check de disponibilite.
+
+== Actif des sessions anterieures
+
+* `openapi.yaml` — contrat REST Edster (3 paths, 6 schemas)
 * `apiSchema` — validation Kotlin pure
 * `chatbot.sh` — REPL Ollama, prompt N3 francais
-* `engine.sh` — 8 commandes (info/verify/graph/provision/api/contract/chatbot/health)
-* `health.sh` — JSON HealthResponse (21 plugins, 21k nodes, DAG OK)
+* `health.sh` — JSON HealthResponse
+* `engine.sh` — 8 commandes
+* Lecon L09 gravee dans `configuration/.agents/lazy/lecon-l09.adoc`
+* Regle 6 ajoutee dans `AGENT.adoc` engine
 
 == Etat Actuel
 
 [source]
 ----
+7 tasks engine: aggregateGraphs, verifyDagAcyclic, provisionWorkspace,
+                apiSchema, info, usage, augmentOpencode (a faire)
 CLI: ./engine.sh <command>
-  info       → Engine status + DAG registry
-  verify     → verifyDagAcyclic
-  graph      → aggregateGraphs
-  provision  → provisionWorkspace
-  api|contract → apiSchema (openapi.yaml validation)
-  chatbot [model] → REPL Ollama
-  health     → JSON health endpoint mock
-  tasks      → ./gradlew tasks --group engine
+  info/verify/graph/provision/api/contract/chatbot/health/tasks
 ----
 
 == Decisions Actees
 
 * Engine build script only — pas de src/main/kotlin
+* 4 taches cibles definies dans AGENT.adoc
+* Nouvelle tache = proposition + validation explicite obligatoire
 * Secrets depuis configuration/
-* Zero Groovy — apiSchema en Kotlin pur
-* StdoutFormatter dans codebase-gradle/rag (N1)
+* Couverture de tests = responsabilite des plugins, pas d'engine
 
 [.text-right]
-*Session 2026-05-11 — generee par la procedure de fin de session 006.*
+*Session 2026-05-11 — generee par la procedure de fin de session 007.*
