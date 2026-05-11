@@ -4,6 +4,12 @@
 |===
 | Session | Date | Type | EPIC(s) | Score
 
+| 010
+| 2026-05-11
+| infra
+| A3 — CI/CD Workflow GitHub Actions
+| 10/10 — Template .github/workflows/test.yml deploye sur quizz-benchmark, graphify-gradle, payment-scaffold
+
 | 009
 | 2026-05-11
 | leçon

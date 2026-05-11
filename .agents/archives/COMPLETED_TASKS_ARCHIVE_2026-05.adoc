@@ -1,5 +1,20 @@
 = Taches Terminees Archive — Mai 2026 — Engine
 
+== Session 010 — 2026-05-11
+
+|===
+| EPIC | Tache | Statut
+
+| A3
+| `CI/CD Workflow` — Template .github/workflows/test.yml deploye
+| ✅ quizz-benchmark (1m14s), graphify-gradle (57s), payment-scaffold (1m44s)
+
+| A3
+| `Correctifs validatePlugins` — quizz-benchmark, graphify-gradle, payment-scaffold
+| ✅ @Optional boolean fix, @DisableCachingByDefault x17, jvmToolchain(24), gradlew wrapper
+|===
+
+'''
 == Session 009 — 2026-05-11
 
 |===

@@ -1,0 +1,68 @@
+= Rapport de Session — 010 — CI/CD Workflow GitHub Actions
+:toc:
+:date: 2026-05-11
+
+== Objectif
+
+Créer un template standard `.github/workflows/test.yml` JUnit + Gradle + checkout,
+le déployer sur 3 projets, et vérifier que les builds passent sur GitHub Actions.
+Bloc A3 du MVP0.
+
+== Template Standard
+
+[source,yaml]
+----
+name: Test
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+jobs:
+  test:
+    name: Build & Test
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up JDK 24
+        uses: actions/setup-java@v4
+        with:
+          java-version: '24'
+          distribution: 'temurin'
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v4
+      - name: Build and Test
+        run: ./gradlew build
+----
+
+== Déploiement
+
+|===
+| Projet | Repo | Adaptations | Statut Final
+| quizz-benchmark | cheroliv/quizz-benchmark-plugin | `working-directory: quizz-benchmark-plugin` | ✅ 1m14s
+| graphify-gradle | cheroliv/graphify-gradle | Aucune | ✅ 57s
+| payment-scaffold | cheroliv/payment-scaffold-gradle | Aucune | ✅ 1m44s
+|===
+
+== Correctifs Appliqués
+
+=== quizz-benchmark
+. `RunQuizTask.kt:18` : retiré `@Optional` du `boolean` primitif `interactive`
+  → Gradle 9.5 `validatePlugins` rejette `@Optional` sur types primitifs
+
+=== graphify-gradle
+. `ScanWorkspaceTask.kt:23` : ajouté `@DisableCachingByDefault(because = "...")`
+  → Gradle 9.5 `validatePlugins` exige annotation de caching explicite
+
+=== payment-scaffold (4 correctifs)
+. `gradlew` + `gradle/wrapper/` absents du repo racine → ajoutés
+. `build.gradle.kts` racine référençait des plugins non publiés → vidé
+. `jvmToolchain(JavaVersion.VERSION_24.ordinal)` = 23, pas 24 → `jvmToolchain(24)`
+. Sources `ScaffoldPayment*Task.kt` : erreurs de syntaxe template strings → corrigées
+. 16 `ScaffoldPayment*Task` : `@DisableCachingByDefault` → ajouté
+
+== Résultat
+
+Les 3 builds passent sur GitHub Actions.
+Template standard déployé avec succès sur les 3 projets cibles.

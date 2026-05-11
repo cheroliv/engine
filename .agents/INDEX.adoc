@@ -6,8 +6,8 @@ _Ontologie spatiale_ : voir `configuration/.agents/AGENT_GOVERNANCE.adoc`
 _DAG_ : N3 — Orchestration (Regle 4bis)
 
 _Derniere mise a jour_ : 2026-05-11
-_Session terminee_ : 9 — Lecon L10 (compilation avant commit) + fix augmentOpencode
-_Session en cours_ : 10 — (a definir)
+_Session terminee_ : 10 — A3 CI/CD Workflow deploye sur 3 projets
+_Session en cours_ : 11 — (a definir)
 
 '''
 == REGLES ABSOLUES (resume)
@@ -23,6 +23,7 @@ _Session en cours_ : 10 — (a definir)
 
 |===
 | # | Date | Type | Sujet | Score
+| 10 | 2026-05-11 | infra | A3 CI/CD Template .github/workflows/test.yml deploye sur 3 projets | 10/10
 | 9 | 2026-05-11 | leçon | L10 — Compilation AVANT chaque commit + fix augmentOpencode | 10/10
 | 8 | 2026-05-11 | feature | augmentOpencode — derniere tache cible du contrat | 10/10
 | 7 | 2026-05-11 | leçon | L09 — Engine N3 consommateur, pas serveur HTTP | 10/10
@@ -54,6 +55,7 @@ _Session en cours_ : 10 — (a definir)
 | L09 | Lecon — Engine N3 consommateur, pas serveur HTTP | TERMINE (session 7) | P0
 | ENG-9 | `augmentOpencode` — derniere tache cible contrat | TERMINE (session 8) | P0
 | L10 | Lecon — Compilation AVANT chaque commit | TERMINE (session 9) | P0
+| A3 | CI/CD Workflow GitHub Actions — Template deploye quizz-benchmark/graphify-gradle/payment-scaffold | TERMINE (session 10) | P1
 |===
 
 '''

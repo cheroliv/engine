@@ -1,9 +1,9 @@
-= PROMPT_REPRISE — Session 010 — Engine
+= PROMPT_REPRISE — Session 011 — Engine
 :toc:
 
 == Contexte de Reprise
 
-*Sessions 0→9 ont realise* :
+*Sessions 0→10 ont realise* :
 - 0-3 : Bootstrap, git init, ENG-1/2 (aggregateGraphs/verifyDagAcyclic), ENG-3/4 (provisionWorkspace/CLI)
 - 4 : B1 StdoutFormatter dans codebase-gradle/rag
 - 5 : ENG-5 openapi.yaml + apiSchema + ENG-6 chatbot.sh
@@ -11,6 +11,7 @@
 - 7 : L09 — Engine N3 consommateur, pas serveur (gravee gouvernance)
 - 8 : augmentOpencode — derniere tache cible (placeholder, pret EPIC 9)
 - 9 : L10 — Compilation AVANT chaque commit (gravee gouvernance) + fix augmentOpencode
+- 10 : A3 CI/CD — Template .github/workflows/test.yml deploye sur 3 projets (quizz-benchmark, graphify-gradle, payment-scaffold)
 
 == Contrat Engine — 4 taches cibles TERMINEES
 
@@ -22,25 +23,26 @@
 | `augmentOpencode` | 8 | ✅ (placeholder -> /tmp/opencode-context.txt, actif reel quand EPIC 9 pret)
 |===
 
+== Artefacts CI/CD deployes
+
+|===
+| Projet | Workflow | Run
+| quizz-benchmark | ✅ | 1m14s
+| graphify-gradle | ✅ | 57s
+| payment-scaffold | ✅ | 1m44s
+|===
+
 == Regles ajoutees cette session
 
 . Regle 6 — Pas de taches hors contrat sans validation (L09)
 . Regle 7 — Compilation AVANT commit (L10)
 
-== Prochaine etape — Session 010
+== Prochaine etape — Session 011
 
-Le contrat engine est termine. Deux directions :
+Le contrat engine est termine. Trois directions possibles :
 * Pivot codebase-gradle — EPIC 9 US-9.10 CompositeContextBuilder (debloque augmentOpencode reel)
+* Deploiement CI/CD additionnel — codebase-gradle, plantuml-gradle, slider-gradle, bakery-gradle, readme-gradle, training-gradle
 * Cleanup engine — revoir les artefacts hors contrat (openapi.yaml, apiSchema, chatbot.sh)
 
-== Etat Actuel
-
-[source]
-----
-engine.sh — 9 commandes
-build.gradle.kts — 8 taches engine
-AGENT.adoc — 7 regles absolues
-----
-
 [.text-right]
-*Session 2026-05-11 — generee par la procedure de fin de session 009.*
+*Session 2026-05-11 (010) — generee par la procedure de fin de session 010.*
