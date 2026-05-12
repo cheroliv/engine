@@ -8,7 +8,7 @@ plugins {
 
 val officePath: String = System.getenv("OFFICE_PATH") ?: "/home/cheroliv/workspace/office"
 val workspaceRoot = File(System.getenv("HOME") ?: "/home/cheroliv").resolve("workspace")
-val foundryDir = workspaceRoot.resolve("foundry/OSS")
+val foundryDir = workspaceRoot.resolve("foundry/public")
 val siteName: String = project.findProperty("siteName") as? String ?: "cheroliv.com"
 
 bakery {
@@ -135,7 +135,7 @@ fun buildProvisionScript(levels: Map<String, Int>, repos: Map<String, String>): 
     sb.appendLine()
     sb.appendLine("WS=\${1:-\$(pwd)/workspace}")
     sb.appendLine("echo \"Provisioning workspace at \$WS\"")
-    sb.appendLine("mkdir -p \"\$WS\"/{foundry/OSS,office,office/sites,office/pilotage,configuration,configuration/.agents,configuration/vision-archive,configuration/settings}")
+    sb.appendLine("mkdir -p \"\$WS\"/{foundry/public,office,office/sites,office/pilotage,configuration,configuration/.agents,configuration/vision-archive,configuration/settings}")
     sb.appendLine()
 
     val byLevel = levels.entries
@@ -148,19 +148,19 @@ fun buildProvisionScript(levels: Map<String, Int>, repos: Map<String, String>): 
         for (project in projects) {
             val repo = repos[project]!!
             sb.appendLine("echo \"  Cloning $project (N$level)...\"")
-            sb.appendLine("if [ ! -d \"\$WS/foundry/OSS/$project\" ]; then")
-            sb.appendLine("    git clone --depth 1 https://github.com/$githubOrg/$repo.git \"\$WS/foundry/OSS/$project\" 2>/dev/null || true")
+            sb.appendLine("if [ ! -d \"\$WS/foundry/public/$project\" ]; then")
+            sb.appendLine("    git clone --depth 1 https://github.com/$githubOrg/$repo.git \"\$WS/foundry/public/$project\" 2>/dev/null || true")
             sb.appendLine("fi")
         }
         sb.appendLine()
     }
 
     sb.appendLine("# Engine at workspace root symlink")
-    sb.appendLine("ln -sf \"\$WS/foundry/OSS/engine/engine.sh\" \"\$WS/engine\" 2>/dev/null || true")
+    sb.appendLine("ln -sf \"\$WS/foundry/public/engine/engine.sh\" \"\$WS/engine\" 2>/dev/null || true")
     sb.appendLine()
     sb.appendLine("echo \"Workspace provisioned.\"")
     sb.appendLine("echo \"Next steps:\"")
-    sb.appendLine("echo \"  cd \$WS/foundry/OSS/engine && ./gradlew tasks --group engine\"")
+    sb.appendLine("echo \"  cd \$WS/foundry/public/engine && ./gradlew tasks --group engine\"")
 
     return sb.toString()
 }
