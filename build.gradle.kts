@@ -250,6 +250,7 @@ tasks.register("assembleCompositeContext") {
 
     val workspaceRootDir = workspaceRoot
     val codexDir = foundryDir.resolve("codex-gradle")
+    val trainingDir = foundryDir.resolve("training-gradle")
     val codebaseDir = foundryDir.resolve("codebase-gradle")
     val contextMode = project.findProperty("context") as? String ?: "composite"
     val query = project.findProperty("query") as? String ?: ""
@@ -304,6 +305,52 @@ tasks.register("assembleCompositeContext") {
             }
         }
 
+        val trainingEntries = ArrayList<Map<String, Any>>()
+
+        if (contextMode in listOf("composite", "rag")) {
+            val trainingPluginDir = trainingDir.resolve("training-plugin")
+            if (trainingPluginDir.exists()) {
+                val trainingsBuildDir = File(trainingDir, "build/training")
+                trainingsBuildDir.mkdirs()
+                val retrieveJson = File(trainingsBuildDir, "retrieve-results.json")
+
+                println("[engine] trainingRetrieve : \"${query.take(80)}\" -> pgvector (top-$topK)")
+                val trainProc = ProcessBuilder(listOf(
+                    "./gradlew", "-q", "trainingRetrieve",
+                    "-Pquery=$query",
+                    "-PtopK=$topK",
+                    "-PoutputFile=${retrieveJson.absolutePath}"
+                ))
+                    .directory(trainingPluginDir)
+                    .redirectErrorStream(true)
+                    .start()
+                val trainExit = trainProc.waitFor()
+                if (trainExit == 0 && retrieveJson.exists()) {
+                    val json = JsonSlurper().parse(retrieveJson)
+                    if (json is List<*>) {
+                        for (item in json) {
+                            if (item is Map<*, *>) {
+                                @Suppress("UNCHECKED_CAST")
+                                val map = item as Map<String, Any>
+                                trainingEntries.add(mapOf(
+                                    "source" to "training",
+                                    "entryId" to (map["entryId"]?.toString() ?: ""),
+                                    "title" to (map["title"]?.toString() ?: ""),
+                                    "similarity" to ((map["similarity"] as? Number)?.toDouble() ?: 0.0),
+                                    "fullText" to (map["fullText"]?.toString() ?: "").take(500)
+                                ))
+                            }
+                        }
+                    }
+                    println("[engine] OK trainingRetrieve OK - ${trainingEntries.size} results")
+                } else {
+                    println("[engine] trainingRetrieve: pgvector not available (exit=$trainExit)")
+                }
+            } else {
+                println("[engine] training-gradle (N2) not found - skipping trainingRetrieve")
+            }
+        }
+
         if (contextMode in listOf("composite", "kg")) {
             val graphFile = workspaceRootDir.resolve("office/graph.json")
             if (graphFile.exists()) {
@@ -335,6 +382,7 @@ tasks.register("assembleCompositeContext") {
             "query" to query,
             "mode" to contextMode,
             "codexResults" to codexEntries,
+            "trainingResults" to trainingEntries,
             "codebaseContextPath" to (if (codebaseContextFile.exists()) codebaseContextFile.absolutePath else ""),
             "timestamp" to System.currentTimeMillis()
         )
@@ -343,6 +391,6 @@ tasks.register("assembleCompositeContext") {
             groovy.json.JsonOutput.prettyPrint(groovy.json.JsonOutput.toJson(result))
         )
 
-        println("[engine] OK assembleCompositeContext - ${codexEntries.size} codex + codebase -> ${compositeOutput.absolutePath}")
+        println("[engine] OK assembleCompositeContext - ${codexEntries.size} codex + ${trainingEntries.size} training + codebase -> ${compositeOutput.absolutePath}")
     }
 }
