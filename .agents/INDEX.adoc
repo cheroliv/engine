@@ -5,10 +5,10 @@ _Regles absolues_ : voir `AGENT.adoc`
 _Ontologie spatiale_ : voir `configuration/.agents/AGENT_GOVERNANCE.adoc`
 _DAG_ : N3 — Orchestration (Regle 4bis)
 
-_Derniere mise a jour_ : 2026-05-14
-_Session terminee_ : 013 — EPIC F Template CI Unifié (5 boroughs déployés)
-_Session en cours_ : 014 — (a definir)
-_Session precedente_ : 012 — Code Review Globale + règle terminal consommateur
+_Derniere mise a jour_ : 2026-05-16
+_Session terminee_ : 014 — Jackson replace Groovy JsonSlurper/JsonOutput + capsule-gradle integration
+_Session en cours_ : 015 — (a definir)
+_Session precedente_ : 013 — EPIC F Template CI Unifié (5 boroughs déployés)
 
 '''
 == REGLES ABSOLUES (resume)
@@ -24,6 +24,7 @@ _Session precedente_ : 012 — Code Review Globale + règle terminal consommateu
 
 |===
 | # | Date | Type | Sujet | Score
+| 14 | 2026-05-16 | refacto | Jackson replace Groovy JsonSlurper/JsonOutput + capsule-gradle N2 integration (capsuleCompositeContext + capsuleretrieve) | 10/10
 | 13 | 2026-05-14 | infra | EPIC F — Template CI unifié déployé sur 5 boroughs (codebase, planner, training, waiter, plantuml) | 10/10
 | 12 | 2026-05-12 | governance | Code Review Globale + règle terminal consommateur | 10/10
 | 11 | 2026-05-12 | cleanup | EPIC B Engine Clean — verifyDagAcyclic → graphify-plugin, remove aggregateGraphs/augmentOpencode | 10/10
@@ -92,4 +93,5 @@ _Session precedente_ : 012 — Code Review Globale + règle terminal consommateu
 | `readme-gradle` | N2 | README formate multilangues
 | `training-gradle` | N2 | Extraction referentiels AFNOR/REAC
 | `waiter-gradle` | N2 | Point d'entree unique fonderie (consommateur waiter-plugin)
+| `capsule-gradle` | N2 | Plugin Gradle capsule video (TTS + Playwright + FFmpeg)
 |===

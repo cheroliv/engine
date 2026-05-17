@@ -152,6 +152,20 @@
 | ✅ Contrat DAG respecte : la charge de la preuve est sur le plugin proprietaire
 |===
 
+== Session 014 — 2026-05-16
+
+|===
+| EPIC | Tache | Statut
+
+| refacto
+| `Jackson` — Remplacer Groovy JsonSlurper/JsonOutput → Jackson jacksonObjectMapper dans build.gradle.kts
+| ✅ buildscript jackson-module-kotlin:2.18.3, readValue au lieu de JsonSlurper, writerWithDefaultPrettyPrinter au lieu de JsonOutput
+
+| N3
+| `Capsule integration` — Integration capsule-gradle N2 dans assembleCompositeContext
+| ✅ capsuleEntries[], capsuleDir, capsuleretrieve via ProcessBuilder, dagLevels + pluginRepos mis à jour
+|===
+
 '''
 == Session 013 — 2026-05-14
 

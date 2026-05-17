@@ -1,0 +1,34 @@
+= Session 014 — Jackson replace Groovy + capsule-gradle N2 integration
+:type: refacto
+:date: 2026-05-16
+:score: 10/10
+
+== Résumé
+
+Session cross-borough capsule-gradle (N2) ↔ engine (N3).
+
+== Modifications engine/build.gradle.kts
+
+- `buildscript` ajouté : `jackson-module-kotlin:2.18.3`, `jackson-databind:2.18.3` en classpath
+- `import groovy.json.JsonSlurper` → `import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper`
+- `groovy.json.JsonSlurper().parse(file)` → `jacksonObjectMapper().readValue(file)` x4
+- `groovy.json.JsonOutput.toJson(map)` → `jacksonObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(map)`
+
+== Capsule N2 integration dans assembleCompositeContext
+
+- `capsuleDir` → `capsulePluginDir` → exécute `capsuleretrieve` via ProcessBuilder
+- Parse `capsule-context.json` output → `capsuleEntries[]`
+- Ajouté dans result map : `"capsuleResults" to capsuleEntries`
+- Log final : `... + ${capsuleEntries.size} capsule ...`
+
+== DAG registry mis à jour
+
+- `"capsule-gradle" to 2` dans `dagLevels`
+- `"capsule-gradle" to "capsule-gradle"` dans `pluginRepos`
+
+== Règles respectées
+
+- ✅ Pas de commit sans permission
+- ✅ engine = N3 consommateur, pas producteur de logique métier
+- ✅ Zéro secret
+- ✅ Jackson (Kotlin pur) remplace Groovy

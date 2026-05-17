@@ -4,6 +4,11 @@
 |===
 | Session | Date | Type | EPIC(s) | Score
 
+| 014
+| 2026-05-16
+| refacto
+| Jackson replace Groovy JsonSlurper/JsonOutput + capsule-gradle N2 integration
+| 10/10
 
 | 011
 | 2026-05-12

@@ -1,26 +1,11 @@
-= PROMPT_REPRISE — Engine Session 013
+= PROMPT_REPRISE — Engine Session 015
 :toc:
 
-== Mission session 013
+== Mission session 015
 
-*Etat* : EPIC F TERMINE (session 13). Template CI unifié déployé sur 5 boroughs.
-*Prochaine session* : 014 — a definir.
+*Etat* : (a definir)
+*Prochaine session* : 015 — a definir.
 
 == Contexte
 
-- Template `test.yml` standard (JUnit + JDK 24 + Gradle) déployé sur codebase, planner, training, waiter, plantuml
-- 7/8 boroughs ont CI. Magic-stick sans CI par design (site statique).
-- Compilation planner-gradle KO (dépendance langchain4j manquante, préexistant)
-- Workspace PROMPT_REPRISE.adoc corrigé (désynchronisé depuis 12 mai)
-
-== Fichiers modifies session 13
-
-- codebase-gradle/.github/workflows/test.yml (new)
-- planner-gradle/.github/workflows/test.yml (new)
-- training-gradle/training-plugin/.github/workflows/test.yml (new)
-- waiter-gradle/waiter-plugin/.github/workflows/test.yml (new)
-- plantuml-gradle/.github/workflows/test.yml (new)
-- workspace/PROMPT_REPRISE.adoc (corrigé désync)
-- engine/.agents/INDEX.adoc (+EPIC F, +session 13)
-- engine/.agents/sessions/013-epicf-ci-unifie.adoc (new)
-- engine/.agents/SESSIONS_HISTORY.adoc (+session 13)
+== Fichiers modifies session 014
