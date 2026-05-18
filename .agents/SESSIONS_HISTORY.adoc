@@ -4,6 +4,12 @@
 |===
 | Session | Date | Type | EPIC(s) | Score
 
+| 015
+| 2026-05-18
+| cleanup
+| Nettoyage references saas-deploy-gradle du mapping DAG
+| 10/10
+
 | 014
 | 2026-05-16
 | refacto

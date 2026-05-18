@@ -1,0 +1,16 @@
+= Session 015 — Cleanup saas-deploy-gradle References
+:author: cheroliv + opencode
+:date: 2026-05-18
+:status: TERMINE
+
+== Contexte
+Session de maintenance — nettoyage des références `saas-deploy-gradle` du
+mapping DAG dans `build.gradle.kts`.
+
+== Actions
+* Suppression de `"saas-deploy-gradle"` du `dagLevels` map
+* Suppression de `"saas-deploy-gradle"` du `pluginRepos` map
+
+== Résultat
+✅ Commit 7ec588e — build.gradle.kts nettoye, push OK
+✅ Compilation OK

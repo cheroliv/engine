@@ -5,10 +5,9 @@ _Regles absolues_ : voir `AGENT.adoc`
 _Ontologie spatiale_ : voir `configuration/.agents/AGENT_GOVERNANCE.adoc`
 _DAG_ : N3 — Orchestration (Regle 4bis)
 
-_Derniere mise a jour_ : 2026-05-16
-_Session terminee_ : 014 — Jackson replace Groovy JsonSlurper/JsonOutput + capsule-gradle integration
-_Session en cours_ : 015 — (a definir)
-_Session precedente_ : 013 — EPIC F Template CI Unifié (5 boroughs déployés)
+_Derniere mise a jour_ : 2026-05-18
+_Session terminee_ : 015 — Cleanup saas-deploy-gradle DAG refs
+_Session en cours_ : 016 — (a definir)
 
 '''
 == REGLES ABSOLUES (resume)
